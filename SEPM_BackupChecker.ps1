@@ -14,7 +14,7 @@
   None
 .NOTES
   Version:        1.0
-  Author:         William "Bill" Aycardi
+  Author:         William Aycardi
   Creation Date:  12-30-2021
   Purpose/Change: Checks local backup of the DB of SEPM.
   
@@ -32,10 +32,8 @@ $FileCount = ($Results_000.Count)
 $FileLastWriteTime = ($Results.LastWriteTime)
 $FileName = ($Results.Name)
 
-
-
 #Creates a new Mail Message Object. This is the object needed for the addressing email, subject, body, etc
-$MailSubject= "SEPM [CGESSEPM] - Schedule Database Checker"
+$MailSubject= "SEPM [XXxxXXxxXX] - Schedule Database Checker"
 
 $MailBody = @"
 Script ran at: 
@@ -45,7 +43,7 @@ $Date
 Symantec Endpoint Protection Manager - Schedule Database Checker
 
 ============================
-Server: CGESSEPM || Backup Frequency: Weekly || Day of the week: Monday || Start Time: 0300 || Time Zone: EST
+Server: XXxxXXxxXX || Backup Frequency: Weekly || Day of the week: Monday || Start Time: 0300 || Time Zone: EST
 
 ============================
 Parent Folder Location:
@@ -68,17 +66,17 @@ $FileName
 "@
 
 $SmtpClient = New-Object system.net.mail.smtpClient($SMTPServer, 25)
-$SmtpClient.host = "10.209.64.11" 
+$SmtpClient.host = "xx.XX.XX.xx" 
 $MailMessage = New-Object system.net.mail.mailmessage 
-$MailMessage.from = "csc.symantec@cgexchange.org"
-$MailMessage.To.add("William.aycardi@cgexchange.org") 
+$MailMessage.from = "XXXXX_@xxxxx.com"
+$MailMessage.To.add("YxYxYxYxYxYx@YxYxYxYx.com") 
 
 $MailMessage.Subject = $MailSubject 
 
 $MailMessage.Body = $MailBody
 
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
-#Actually Sends the Message
+# Sends the E-mail Message
 $SmtpClient.Send($MailMessage) 
 #========================================================================
 ##############
